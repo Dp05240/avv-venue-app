@@ -68,7 +68,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
           reorderVendor: '',
         });
       }
-      setIsEditing(mode === 'edit');
+      // Fix the editing logic
+      setIsEditing(mode === 'edit' || mode === 'add');
     }
   }, [isOpen, item, mode]);
 
@@ -112,7 +113,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
       } as Omit<InventoryItem, 'id' | 'categoryName' | 'createdAt' | 'updatedAt'>;
 
       let response;
-      if (item) {
+      if (item && mode === 'edit') {
         response = await inventoryApi.updateItem(item.id, itemData);
       } else {
         response = await inventoryApi.createItem(itemData);
@@ -132,6 +133,9 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
   };
 
   if (!isOpen) return null;
+
+  const isViewMode = mode === 'view';
+  const isEditMode = mode === 'edit' || mode === 'add';
 
   return (
     <div style={{
@@ -163,7 +167,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
           marginBottom: '24px',
         }}>
           <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#232323' }}>
-            {isEditing ? 'Edit Item' : item ? 'View Item Details' : 'Add New Item'}
+            {mode === 'edit' ? 'Edit Item' : mode === 'view' ? 'View Item Details' : 'Add New Item'}
           </h2>
           <button
             onClick={onClose}
@@ -191,7 +195,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 value={formData.name || ''}
                 onChange={handleInputChange}
                 required
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -199,8 +203,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -214,7 +218,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 name="brand"
                 value={formData.brand || ''}
                 onChange={handleInputChange}
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -222,8 +226,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -238,7 +242,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 value={formData.sku || ''}
                 onChange={handleInputChange}
                 required
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -246,8 +250,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -261,7 +265,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 value={formData.categoryId || ''}
                 onChange={handleInputChange}
                 required
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -269,8 +273,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'pointer' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'pointer',
                 }}
               >
                 <option value="">Select Category</option>
@@ -293,7 +297,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 onChange={handleInputChange}
                 required
                 min="0"
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -301,8 +305,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -318,7 +322,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 onChange={handleInputChange}
                 required
                 min="0"
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -326,8 +330,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -343,7 +347,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 onChange={handleInputChange}
                 min="0"
                 step="0.01"
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -351,8 +355,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -368,7 +372,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 onChange={handleInputChange}
                 min="0"
                 step="0.01"
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -376,8 +380,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -390,7 +394,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 name="status"
                 value={formData.status || 'active'}
                 onChange={handleInputChange}
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -398,8 +402,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'pointer' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'pointer',
                 }}
               >
                 <option value="active">Active</option>
@@ -417,7 +421,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 name="location"
                 value={formData.location || ''}
                 onChange={handleInputChange}
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -425,8 +429,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -441,7 +445,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
               value={formData.description || ''}
               onChange={handleInputChange}
               rows={3}
-              disabled={!isEditing}
+              disabled={isViewMode}
               style={{
                 width: '100%',
                 padding: '8px 12px',
@@ -450,8 +454,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 fontSize: '14px',
                 outline: 'none',
                 resize: 'vertical',
-                background: isEditing ? '#ffffff' : '#f9fafb',
-                cursor: isEditing ? 'text' : 'default',
+                background: isViewMode ? '#f9fafb' : '#ffffff',
+                cursor: isViewMode ? 'default' : 'text',
               }}
             />
           </div>
@@ -465,7 +469,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
               value={formData.specs || ''}
               onChange={handleInputChange}
               rows={3}
-              disabled={!isEditing}
+              disabled={isViewMode}
               style={{
                 width: '100%',
                 padding: '8px 12px',
@@ -474,8 +478,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 fontSize: '14px',
                 outline: 'none',
                 resize: 'vertical',
-                background: isEditing ? '#ffffff' : '#f9fafb',
-                cursor: isEditing ? 'text' : 'default',
+                background: isViewMode ? '#f9fafb' : '#ffffff',
+                cursor: isViewMode ? 'default' : 'text',
               }}
             />
           </div>
@@ -490,7 +494,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 name="supplier"
                 value={formData.supplier || ''}
                 onChange={handleInputChange}
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -498,8 +502,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -513,7 +517,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 name="supplierContact"
                 value={formData.supplierContact || ''}
                 onChange={handleInputChange}
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -521,8 +525,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -535,7 +539,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 name="preferredVendorId"
                 value={formData.preferredVendorId || 0}
                 onChange={handleInputChange}
-                disabled={!isEditing}
+                disabled={isViewMode}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -543,8 +547,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'pointer',
                 }}
               >
                 <option value={0}>Select Preferred Vendor</option>
@@ -565,7 +569,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 name="reorderVendor"
                 value={formData.reorderVendor || ''}
                 onChange={handleInputChange}
-                disabled={!isEditing}
+                disabled={isViewMode}
                 placeholder="Enter vendor name as fallback"
                 style={{
                   width: '100%',
@@ -574,8 +578,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   borderRadius: '6px',
                   fontSize: '14px',
                   outline: 'none',
-                  background: isEditing ? '#ffffff' : '#f9fafb',
-                  cursor: isEditing ? 'text' : 'default',
+                  background: isViewMode ? '#f9fafb' : '#ffffff',
+                  cursor: isViewMode ? 'default' : 'text',
                 }}
               />
             </div>
@@ -590,7 +594,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
               value={formData.notes || ''}
               onChange={handleInputChange}
               rows={3}
-              disabled={!isEditing}
+              disabled={isViewMode}
               style={{
                 width: '100%',
                 padding: '8px 12px',
@@ -599,8 +603,8 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 fontSize: '14px',
                 outline: 'none',
                 resize: 'vertical',
-                background: isEditing ? '#ffffff' : '#f9fafb',
-                cursor: isEditing ? 'text' : 'default',
+                background: isViewMode ? '#f9fafb' : '#ffffff',
+                cursor: isViewMode ? 'default' : 'text',
               }}
             />
           </div>
@@ -612,7 +616,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
           )}
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
-            {!isEditing && item && (
+            {mode === 'view' && item && (
               <button
                 type="button"
                 onClick={() => setIsEditing(true)}
@@ -644,9 +648,9 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                 cursor: 'pointer',
               }}
             >
-              {isEditing ? 'Cancel' : 'Close'}
+              {isEditMode ? 'Cancel' : 'Close'}
             </button>
-            {isEditing && (
+            {isEditMode && (
               <button
                 type="submit"
                 disabled={loading}
@@ -662,7 +666,7 @@ export default function ItemModal({ isOpen, onClose, item, onSave, mode = 'add' 
                   opacity: loading ? 0.6 : 1,
                 }}
               >
-                {loading ? 'Saving...' : (item ? 'Update Item' : 'Add Item')}
+                {loading ? 'Saving...' : (item && mode === 'edit' ? 'Update Item' : 'Add Item')}
               </button>
             )}
           </div>
