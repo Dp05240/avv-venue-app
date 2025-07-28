@@ -47,9 +47,9 @@ export function MetricsWidget({ metrics }: { metrics: DashboardMetric[] }) {
   return (
     <div style={{ 
       display: 'grid', 
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-      gap: 20,
-      marginBottom: 32
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+      gap: 16,
+      marginBottom: 24
     }}>
       {metrics.map((metric, index) => (
         <Link 
@@ -59,22 +59,27 @@ export function MetricsWidget({ metrics }: { metrics: DashboardMetric[] }) {
         >
           <div style={{
             background: '#fff',
-            borderRadius: 16,
-            padding: '24px 20px',
-            border: '2px solid #e2e8f0',
+            borderRadius: 12,
+            padding: '20px 18px',
+            border: '1px solid #e2e8f0',
             transition: 'all 0.3s ease',
             cursor: 'pointer',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            height: '100%',
+            minHeight: '140px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-4px)';
-            e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.12)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.1)';
             e.currentTarget.style.borderColor = '#cbd5e1';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
             e.currentTarget.style.borderColor = '#e2e8f0';
           }}
           >
@@ -83,23 +88,28 @@ export function MetricsWidget({ metrics }: { metrics: DashboardMetric[] }) {
               top: 0,
               left: 0,
               right: 0,
-              height: '4px',
+              height: '3px',
               background: metric.color,
-              borderRadius: '16px 16px 0 0'
+              borderRadius: '12px 12px 0 0'
             }} />
             
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-              <div style={{ fontSize: 32 }}>{metric.icon}</div>
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between', 
+              marginBottom: 12 
+            }}>
+              <div style={{ fontSize: 28 }}>{metric.icon}</div>
               {metric.change && (
                 <div style={{
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: 600,
                   color: metric.changeType === 'positive' ? '#10b981' : 
                          metric.changeType === 'negative' ? '#ef4444' : '#6b7280',
                   background: metric.changeType === 'positive' ? '#ecfdf5' : 
                              metric.changeType === 'negative' ? '#fef2f2' : '#f3f4f6',
-                  padding: '4px 8px',
-                  borderRadius: 8,
+                  padding: '3px 6px',
+                  borderRadius: 6,
                   border: `1px solid ${metric.changeType === 'positive' ? '#a7f3d0' : 
                                            metric.changeType === 'negative' ? '#fca5a5' : '#d1d5db'}`
                 }}>
@@ -108,10 +118,21 @@ export function MetricsWidget({ metrics }: { metrics: DashboardMetric[] }) {
               )}
             </div>
             
-            <div style={{ fontSize: 32, fontWeight: 800, color: '#1e293b', marginBottom: 8 }}>
+            <div style={{ 
+              fontSize: 28, 
+              fontWeight: 700, 
+              color: '#1e293b', 
+              marginBottom: 6,
+              lineHeight: 1.2
+            }}>
               {metric.value}
             </div>
-            <div style={{ fontSize: 16, color: '#64748b', fontWeight: 500 }}>
+            <div style={{ 
+              fontSize: 14, 
+              color: '#64748b', 
+              fontWeight: 500,
+              lineHeight: 1.3
+            }}>
               {metric.label}
             </div>
           </div>
@@ -125,13 +146,18 @@ export function MetricsWidget({ metrics }: { metrics: DashboardMetric[] }) {
 export function QuickActionsWidget({ actions }: { actions: QuickAction[] }) {
   return (
     <div>
-      <h2 style={{ fontSize: 24, fontWeight: 700, color: '#1e293b', marginBottom: 20 }}>
+      <h2 style={{ 
+        fontSize: 20, 
+        fontWeight: 600, 
+        color: '#1e293b', 
+        marginBottom: 16 
+      }}>
         Quick Actions
       </h2>
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-        gap: 16
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
+        gap: 12
       }}>
         {actions.map((action, index) => (
           <Link 
@@ -141,16 +167,21 @@ export function QuickActionsWidget({ actions }: { actions: QuickAction[] }) {
           >
             <div style={{
               background: '#fff',
-              borderRadius: 12,
-              padding: '20px 16px',
-              border: '2px solid #e2e8f0',
+              borderRadius: 10,
+              padding: '16px 14px',
+              border: '1px solid #e2e8f0',
               transition: 'all 0.3s ease',
               cursor: 'pointer',
-              textAlign: 'center'
+              textAlign: 'center',
+              height: '100%',
+              minHeight: '120px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.1)';
               e.currentTarget.style.borderColor = '#cbd5e1';
             }}
             onMouseLeave={(e) => {
@@ -159,11 +190,21 @@ export function QuickActionsWidget({ actions }: { actions: QuickAction[] }) {
               e.currentTarget.style.borderColor = '#e2e8f0';
             }}
             >
-              <div style={{ fontSize: 28, marginBottom: 12 }}>{action.icon}</div>
-              <div style={{ fontSize: 16, fontWeight: 600, color: '#1e293b', marginBottom: 6 }}>
+              <div style={{ fontSize: 24, marginBottom: 8 }}>{action.icon}</div>
+              <div style={{ 
+                fontSize: 14, 
+                fontWeight: 600, 
+                color: '#1e293b', 
+                marginBottom: 4,
+                lineHeight: 1.2
+              }}>
                 {action.label}
               </div>
-              <div style={{ fontSize: 13, color: '#64748b' }}>
+              <div style={{ 
+                fontSize: 11, 
+                color: '#64748b',
+                lineHeight: 1.3
+              }}>
                 {action.description}
               </div>
             </div>
@@ -199,17 +240,26 @@ export function RecentActivitiesWidget({ activities }: { activities: RecentActiv
   return (
     <div style={{
       background: '#fff',
-      borderRadius: 20,
-      padding: '32px',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+      borderRadius: 16,
+      padding: '24px',
+      boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
       border: '1px solid #e2e8f0'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-        <h2 style={{ fontSize: 24, fontWeight: 700, color: '#1e293b' }}>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between', 
+        marginBottom: 20 
+      }}>
+        <h2 style={{ 
+          fontSize: 20, 
+          fontWeight: 600, 
+          color: '#1e293b' 
+        }}>
           Recent Activities
         </h2>
         <Link href="/notifications" style={{ 
-          fontSize: 14, 
+          fontSize: 13, 
           color: '#3b82f6', 
           textDecoration: 'none',
           fontWeight: 600
@@ -218,14 +268,14 @@ export function RecentActivitiesWidget({ activities }: { activities: RecentActiv
         </Link>
       </div>
       
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {activities.map((activity) => (
           <div key={activity.id} style={{
             display: 'flex',
             alignItems: 'flex-start',
-            gap: 12,
-            padding: '16px',
-            borderRadius: 12,
+            gap: 10,
+            padding: '14px',
+            borderRadius: 10,
             background: '#f8fafc',
             border: '1px solid #e2e8f0',
             transition: 'all 0.2s ease'
@@ -239,20 +289,20 @@ export function RecentActivitiesWidget({ activities }: { activities: RecentActiv
             e.currentTarget.style.borderColor = '#e2e8f0';
           }}
           >
-            <div style={{ fontSize: 20 }}>{getStatusIcon(activity.type)}</div>
+            <div style={{ fontSize: 18 }}>{getStatusIcon(activity.type)}</div>
             <div style={{ flex: 1 }}>
               <div style={{ 
-                fontSize: 16, 
+                fontSize: 14, 
                 fontWeight: 600, 
                 color: '#1e293b',
-                marginBottom: 4
+                marginBottom: 3
               }}>
                 {activity.title}
               </div>
               <div style={{ 
-                fontSize: 14, 
+                fontSize: 12, 
                 color: '#64748b',
-                marginBottom: 8
+                marginBottom: 6
               }}>
                 {activity.description}
               </div>
@@ -262,7 +312,7 @@ export function RecentActivitiesWidget({ activities }: { activities: RecentActiv
                 justifyContent: 'space-between'
               }}>
                 <div style={{ 
-                  fontSize: 12, 
+                  fontSize: 11, 
                   color: '#94a3b8',
                   fontWeight: 500
                 }}>
@@ -270,14 +320,14 @@ export function RecentActivitiesWidget({ activities }: { activities: RecentActiv
                 </div>
                 {activity.action && (
                   <button style={{
-                    fontSize: 12,
+                    fontSize: 11,
                     color: getStatusColor(activity.status),
                     background: `${getStatusColor(activity.status)}10`,
                     border: 'none',
                     cursor: 'pointer',
                     fontWeight: 600,
-                    padding: '4px 8px',
-                    borderRadius: 6
+                    padding: '3px 6px',
+                    borderRadius: 4
                   }}>
                     {activity.action}
                   </button>
@@ -285,11 +335,11 @@ export function RecentActivitiesWidget({ activities }: { activities: RecentActiv
               </div>
             </div>
             <div style={{
-              width: 8,
-              height: 8,
+              width: 6,
+              height: 6,
               borderRadius: '50%',
               background: getStatusColor(activity.status),
-              marginTop: 4
+              marginTop: 3
             }} />
           </div>
         ))}
@@ -313,17 +363,26 @@ export function SpaceStatusWidget({ spaces }: { spaces: SpaceStatus[] }) {
   return (
     <div style={{
       background: '#fff',
-      borderRadius: 20,
-      padding: '32px',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+      borderRadius: 16,
+      padding: '24px',
+      boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
       border: '1px solid #e2e8f0'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-        <h2 style={{ fontSize: 24, fontWeight: 700, color: '#1e293b' }}>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between', 
+        marginBottom: 20 
+      }}>
+        <h2 style={{ 
+          fontSize: 20, 
+          fontWeight: 600, 
+          color: '#1e293b' 
+        }}>
           Space Status
         </h2>
         <Link href="/operations/spaces" style={{ 
-          fontSize: 14, 
+          fontSize: 13, 
           color: '#3b82f6', 
           textDecoration: 'none',
           fontWeight: 600
@@ -332,12 +391,12 @@ export function SpaceStatusWidget({ spaces }: { spaces: SpaceStatus[] }) {
         </Link>
       </div>
       
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {spaces.map((space) => (
           <div key={space.id} style={{
-            padding: '20px',
-            borderRadius: 12,
-            border: '2px solid #e2e8f0',
+            padding: '16px',
+            borderRadius: 10,
+            border: '1px solid #e2e8f0',
             background: '#f8fafc',
             transition: 'all 0.2s ease'
           }}
@@ -350,14 +409,23 @@ export function SpaceStatusWidget({ spaces }: { spaces: SpaceStatus[] }) {
             e.currentTarget.style.borderColor = '#e2e8f0';
           }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-              <div style={{ fontSize: 18, fontWeight: 700, color: '#1e293b' }}>
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between', 
+              marginBottom: 10 
+            }}>
+              <div style={{ 
+                fontSize: 16, 
+                fontWeight: 600, 
+                color: '#1e293b' 
+              }}>
                 {space.name}
               </div>
               <div style={{
-                padding: '6px 12px',
-                borderRadius: 20,
-                fontSize: 12,
+                padding: '4px 8px',
+                borderRadius: 16,
+                fontSize: 11,
                 fontWeight: 600,
                 color: '#fff',
                 background: getSpaceStatusColor(space.status),
@@ -368,41 +436,77 @@ export function SpaceStatusWidget({ spaces }: { spaces: SpaceStatus[] }) {
             </div>
             
             {space.currentEvent && (
-              <div style={{ marginBottom: 8 }}>
-                <div style={{ fontSize: 14, color: '#64748b', marginBottom: 4 }}>
+              <div style={{ marginBottom: 6 }}>
+                <div style={{ 
+                  fontSize: 12, 
+                  color: '#64748b', 
+                  marginBottom: 2 
+                }}>
                   Current Event:
                 </div>
-                <div style={{ fontSize: 15, fontWeight: 600, color: '#1e293b' }}>
+                <div style={{ 
+                  fontSize: 13, 
+                  fontWeight: 600, 
+                  color: '#1e293b' 
+                }}>
                   {space.currentEvent}
                 </div>
               </div>
             )}
             
             {space.nextEvent && (
-              <div style={{ marginBottom: 12 }}>
-                <div style={{ fontSize: 14, color: '#64748b', marginBottom: 4 }}>
+              <div style={{ marginBottom: 10 }}>
+                <div style={{ 
+                  fontSize: 12, 
+                  color: '#64748b', 
+                  marginBottom: 2 
+                }}>
                   Next Event:
                 </div>
-                <div style={{ fontSize: 15, fontWeight: 600, color: '#1e293b' }}>
+                <div style={{ 
+                  fontSize: 13, 
+                  fontWeight: 600, 
+                  color: '#1e293b' 
+                }}>
                   {space.nextEvent}
                 </div>
               </div>
             )}
             
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center' 
+            }}>
               <div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 2 }}>
+                <div style={{ 
+                  fontSize: 11, 
+                  color: '#64748b', 
+                  marginBottom: 1 
+                }}>
                   Occupancy
                 </div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b' }}>
+                <div style={{ 
+                  fontSize: 14, 
+                  fontWeight: 700, 
+                  color: '#1e293b' 
+                }}>
                   {space.occupancy}%
                 </div>
               </div>
               <div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 2 }}>
+                <div style={{ 
+                  fontSize: 11, 
+                  color: '#64748b', 
+                  marginBottom: 1 
+                }}>
                   Revenue
                 </div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: '#10b981' }}>
+                <div style={{ 
+                  fontSize: 14, 
+                  fontWeight: 700, 
+                  color: '#10b981' 
+                }}>
                   ${space.revenue.toLocaleString()}
                 </div>
               </div>
@@ -425,19 +529,38 @@ export function WeatherWidget() {
   return (
     <div style={{
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      borderRadius: 16,
-      padding: '24px',
+      borderRadius: 14,
+      padding: '20px',
       color: '#fff',
-      textAlign: 'center'
+      textAlign: 'center',
+      height: 'fit-content',
+      minHeight: '200px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
     }}>
-      <div style={{ fontSize: 48, marginBottom: 8 }}>{weather.icon}</div>
-      <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 4 }}>
+      <div style={{ fontSize: 42, marginBottom: 6 }}>{weather.icon}</div>
+      <div style={{ 
+        fontSize: 28, 
+        fontWeight: 700, 
+        marginBottom: 3,
+        lineHeight: 1.2
+      }}>
         {weather.temperature}°F
       </div>
-      <div style={{ fontSize: 16, opacity: 0.9 }}>
+      <div style={{ 
+        fontSize: 14, 
+        opacity: 0.9,
+        marginBottom: 8,
+        lineHeight: 1.3
+      }}>
         {weather.condition}
       </div>
-      <div style={{ fontSize: 14, opacity: 0.7, marginTop: 8 }}>
+      <div style={{ 
+        fontSize: 12, 
+        opacity: 0.7,
+        lineHeight: 1.3
+      }}>
         Perfect weather for events!
       </div>
     </div>

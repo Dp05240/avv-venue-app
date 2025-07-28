@@ -584,9 +584,11 @@ export default function NavBar() {
           alignItems: 'center',
           height: 60,
           boxShadow: '0 2px 8px #fc5c7d22',
-          marginBottom: 32,
+          marginBottom: 0,
           position: 'relative',
           zIndex: 10,
+          margin: 0,
+          border: 'none'
         }}
       >
         <div style={{ fontWeight: 700, fontSize: 22, color: '#fff', marginRight: 40, letterSpacing: 1 }}>

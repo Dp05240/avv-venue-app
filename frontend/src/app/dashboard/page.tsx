@@ -20,8 +20,6 @@ import AcquisitionPitchDeck from '../components/AcquisitionPitchDeck';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-
-
 export default function DashboardPage() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
@@ -62,15 +60,6 @@ export default function DashboardPage() {
       link: '/operations/spaces'
     },
     {
-      label: 'Pending Payments',
-      value: '$8,920',
-      change: '-12.3%',
-      changeType: 'negative',
-      icon: '⏳',
-      color: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-      link: '/clients'
-    },
-    {
       label: 'Customer Satisfaction',
       value: '4.8/5',
       change: '+0.2',
@@ -87,6 +76,15 @@ export default function DashboardPage() {
       icon: '🔧',
       color: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
       link: '/operations/maintenance'
+    },
+    {
+      label: 'Pending Payments',
+      value: '$8,920',
+      change: '-12.3%',
+      changeType: 'negative',
+      icon: '⏳',
+      color: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+      link: '/clients'
     }
   ];
 
@@ -126,8 +124,7 @@ export default function DashboardPage() {
       color: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
       link: '/clients/new',
       description: 'Register new client'
-    },
-
+    }
   ];
 
   // Recent activities
@@ -216,51 +213,90 @@ export default function DashboardPage() {
     }
   ];
 
-
-
   return (
-    <div style={{ minHeight: '100vh', background: '#f8fafc' }}>
+    <div style={{ 
+      minHeight: '100vh', 
+      background: '#f8fafc',
+      margin: 0,
+      padding: 0
+    }}>
       <NavBar />
       
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', width: '100%', padding: '0 32px' }}>
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'row', 
+        alignItems: 'flex-start', 
+        width: '100%', 
+        padding: '0 24px',
+        maxWidth: '1400px',
+        margin: '0 auto'
+      }}>
         {/* Weather Widget on the side */}
-        <div style={{ marginRight: 32 }}>
+        <div style={{ 
+          marginRight: 24,
+          flexShrink: 0,
+          width: '280px'
+        }}>
           <WeatherWidget />
         </div>
         
         {/* Main Dashboard Content */}
-        <div style={{ flex: 1, padding: '32px 0' }}>
+        <div style={{ 
+          flex: 1, 
+          padding: '24px 0',
+          minWidth: 0
+        }}>
           {/* Header with Welcome and Time */}
           <div style={{
             background: '#fff',
-            borderRadius: 20,
-            padding: '32px 40px',
-            marginBottom: 32,
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+            borderRadius: 16,
+            padding: '28px 32px',
+            marginBottom: 24,
+            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
             border: '1px solid #e2e8f0'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'flex-start', 
+              marginBottom: 20 
+            }}>
               <div>
                 <h1 style={{ 
-                  fontSize: 36, 
-                  fontWeight: 800, 
-                  marginBottom: 8, 
+                  fontSize: 32, 
+                  fontWeight: 700, 
+                  marginBottom: 6, 
                   background: 'linear-gradient(135deg, #1e293b 0%, #475569 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
+                  backgroundClip: 'text',
+                  lineHeight: 1.2
                 }}>
                   Welcome back, Admin! 👋
                 </h1>
-                <p style={{ fontSize: 18, color: '#64748b', marginBottom: 0 }}>
+                <p style={{ 
+                  fontSize: 16, 
+                  color: '#64748b', 
+                  marginBottom: 0,
+                  fontWeight: 400
+                }}>
                   Here's what's happening with your venues today
                 </p>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 24, fontWeight: 700, color: '#1e293b' }}>
+                <div style={{ 
+                  fontSize: 22, 
+                  fontWeight: 600, 
+                  color: '#1e293b',
+                  marginBottom: 2
+                }}>
                   {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </div>
-                <div style={{ fontSize: 16, color: '#64748b' }}>
+                <div style={{ 
+                  fontSize: 14, 
+                  color: '#64748b',
+                  fontWeight: 400
+                }}>
                   {currentTime.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
                 </div>
               </div>
@@ -274,7 +310,11 @@ export default function DashboardPage() {
           </div>
 
           {/* Two Column Layout for Activities and Space Status */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr 1fr', 
+            gap: 24 
+          }}>
             <RecentActivitiesWidget activities={recentActivities} />
             <SpaceStatusWidget spaces={spaceStatus} />
           </div>
