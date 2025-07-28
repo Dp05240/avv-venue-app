@@ -1,22 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import type { Booking } from '../../../services/api';
-
-interface CalendarBlock {
-  id: string;
-  date: string;
-  startDate?: string;
-  endDate?: string;
-  type: 'venue_closure' | 'space_block' | 'advance_booking' | 'maintenance';
-  spaces?: string[];
-  reason: string;
-  description?: string;
-  isRecurring?: boolean;
-  recurringPattern?: 'weekly' | 'monthly' | 'yearly';
-  createdAt: string;
-  createdBy: string;
-}
+import type { Booking, CalendarBlock } from '../../../services/api';
 
 interface CalendarBlockModalProps {
   isOpen: boolean;

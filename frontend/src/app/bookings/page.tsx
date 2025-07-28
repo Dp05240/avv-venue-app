@@ -54,7 +54,7 @@ export default function BookingsPage() {
     startTime: '',
     endTime: '',
     space: 'Main Hall',
-    status: 'Pending' as const,
+    status: 'Pending' as 'Confirmed' | 'Pending' | 'Completed' | 'Cancelled',
     attendees: 0,
     eventType: 'Corporate Event',
     notes: '',
@@ -688,13 +688,9 @@ export default function BookingsPage() {
 
             {viewMode === 'calendar' ? (
               <BookingsCalendar
-                bookings={bookings}
-                calendarBlocks={calendarBlocks}
                 onDateSelect={setSelectedDate}
                 onBookingSelect={handleBookingSelect}
-                onBlockCalendar={() => setShowBlockModal(true)}
-                onUpdateBooking={handleUpdateBooking}
-                onDeleteBooking={handleDeleteBooking}
+                selectedDate={selectedDate || undefined}
               />
             ) : (
               <div style={{
@@ -950,7 +946,26 @@ export default function BookingsPage() {
           onClose={() => setShowBlockModal(false)}
           onSave={async (blockData) => {
             try {
-              const response = await calendarBlocksApi.create(blockData);
+              // Ensure required fields are present
+              if (!blockData.date || !blockData.reason || !blockData.type) {
+                alert('Please fill in all required fields');
+                return;
+              }
+              
+              const createData = {
+                date: blockData.date,
+                startDate: blockData.startDate,
+                endDate: blockData.endDate,
+                type: blockData.type,
+                spaces: blockData.spaces,
+                reason: blockData.reason,
+                description: blockData.description,
+                isRecurring: blockData.isRecurring,
+                recurringPattern: blockData.recurringPattern,
+                createdBy: blockData.createdBy || 'Current User',
+              };
+              
+              const response = await calendarBlocksApi.create(createData);
               if (response.data) {
                 setCalendarBlocks([...calendarBlocks, response.data]);
                 setShowBlockModal(false);

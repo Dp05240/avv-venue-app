@@ -32,30 +32,30 @@ export const generateProductDocumentationPDF = () => {
   // Helper function to add heading
   const addHeading = (text: string, y: number, fontSize: number = 16) => {
     doc.setFontSize(fontSize);
-    doc.setFont(undefined, 'bold');
+    doc.setFont('helvetica', 'bold');
     doc.text(text, margin, y);
-    doc.setFont(undefined, 'normal');
+    doc.setFont('helvetica', 'normal');
     return y + lineHeight + 5;
   };
 
   // Helper function to add subheading
   const addSubheading = (text: string, y: number) => {
     doc.setFontSize(14);
-    doc.setFont(undefined, 'bold');
+    doc.setFont('helvetica', 'bold');
     doc.text(text, margin, y);
-    doc.setFont(undefined, 'normal');
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(12);
     return y + lineHeight + 3;
   };
 
   // Title Page
   doc.setFontSize(24);
-  doc.setFont(undefined, 'bold');
+  doc.setFont('helvetica', 'bold');
   doc.text('AV+V Venue Management System', pageWidth / 2, yPosition, { align: 'center' });
   
   yPosition += 20;
   doc.setFontSize(16);
-  doc.setFont(undefined, 'normal');
+  doc.setFont('helvetica', 'normal');
   doc.text('Product Documentation', pageWidth / 2, yPosition, { align: 'center' });
   
   yPosition += 30;

@@ -99,7 +99,7 @@ export default function PreferencesPage() {
     setPreferences({
       ...preferences,
       [category]: {
-        ...preferences[category],
+        ...(preferences[category] as any),
         [field]: value
       }
     });
