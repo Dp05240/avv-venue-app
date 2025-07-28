@@ -1,0 +1,22 @@
+{
+  "name": "avv-venue-backend-advanced",
+  "version": "1.0.0",
+  "description": "Advanced backend for AV+V Venue Management Platform",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["venue", "management", "backend", "advanced"],
+  "author": "AV+V Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

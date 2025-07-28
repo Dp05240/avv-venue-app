@@ -1,0 +1,43 @@
+# FLOWCHARTS & STRUCTURES
+
+This file contains flowcharts and structural diagrams for all modules in the AV+V platform. Add new diagrams as you design new modules or flows.
+
+---
+
+## Current App Structure (Billing, Clients, Operations, Profile)
+
+```mermaid
+flowchart TD
+    A[Main Navigation]
+    A --> B[Dashboard]
+    A --> C[Clients]
+    A --> D[Operations]
+    A --> E[Profile/Settings]
+
+    %% Clients Section
+    C --> C1[Client List]
+    C1 --> C2[Client Details]
+    C2 --> C3[Bookings]
+    C2 --> C4[Invoices & Billing]
+    C4 --> C5[Invoice List]
+    C4 --> C6[Create/Send Invoice]
+    C4 --> C7[Payment History]
+
+    %% Operations Section
+    D --> D1[Maintenance]
+    D --> D2[Inventory]
+    D --> D3[Vendors]
+    D --> D4[Analytics]
+    %% (No Billing here)
+
+    %% Profile/Settings
+    E --> E1[My Profile]
+    E --> E2[My Billing/Subscription]
+    E2 --> E3[Plan & Payment Method]
+    E2 --> E4[Subscription Invoices]
+```
+
+---
+
+## Future Flowcharts
+- Add new flowcharts for each module or feature below as you design them. 

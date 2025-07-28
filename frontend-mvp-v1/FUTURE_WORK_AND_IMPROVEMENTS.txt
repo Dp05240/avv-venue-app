@@ -1,0 +1,115 @@
+FUTURE WORK & IMPROVEMENTS
+==========================
+
+This file is for tracking future work, improvements, and feature ideas for the AV+V platform, organized by module/section.
+
+---
+
+## General (Cross-Module)
+- [ ] Integrate with backend API for persistent data
+- [ ] Add role-based access: requester, technician, manager
+- [ ] Add notifications for new assignments, due soon, and completed tasks
+- [ ] Enable export to CSV/PDF for reporting
+- [ ] Add analytics dashboard with charts and trends
+- [ ] Polish UI for even better mobile experience
+- [ ] Add color-coded status indicators
+- [ ] Add recurring/auto-generated tasks
+
+---
+
+## Maintenance Module
+### Future Work
+- [ ] Implement approval workflow for certain request types
+- [ ] Allow multiple attachments per request
+- [ ] Add activity log/timeline for each request
+- [ ] Add QR code support for space-based quick requests
+- [ ] Add mobile-first camera/photo capture improvements
+- [ ] Add comments/discussion on requests
+- [ ] Add SLA tracking and reminders
+- [ ] Add bulk task creation for events
+- [ ] Add vendor management for repairs
+- [ ] Integrate with calendar for due dates
+
+### Improvement Ideas
+- [ ] Add status change history and audit trail
+- [ ] Add technician performance analytics
+- [ ] Add overdue/urgent highlighting in list
+- [ ] Add ability to reassign tasks
+
+---
+
+## Billing Module
+### Future Work
+- [ ] Implement invoice creation and management
+- [ ] Add payment tracking and reminders
+- [ ] Integrate with accounting software
+- [ ] Add reporting for revenue and outstanding payments
+
+### Improvement Ideas
+- [ ] Add export to PDF/CSV for invoices
+- [ ] Add customer portal for invoice viewing
+
+---
+
+## Inventory/Other Modules (Placeholder)
+### Future Work
+- [ ] Add inventory tracking and low-stock alerts
+- [ ] Add vendor management and purchase orders
+- [ ] Add asset lifecycle management
+
+### Improvement Ideas
+- [ ] Add QR/barcode scanning for inventory
+- [ ] Add analytics for inventory usage
+
+---
+
+---
+
+## AI Integration & Automation
+### Future Work
+- [ ] **AI-Powered Inventory Management**
+  - [ ] Smart demand forecasting and auto-reorder suggestions
+  - [ ] AI-driven category suggestions for new items
+  - [ ] Automated inventory optimization recommendations
+  - [ ] Predictive maintenance scheduling based on usage patterns
+
+- [ ] **AI-Enhanced Maintenance**
+  - [ ] Intelligent task prioritization based on urgency and impact
+  - [ ] AI-powered issue diagnosis and solution suggestions
+  - [ ] Automated technician assignment based on skills and availability
+  - [ ] Smart scheduling optimization for maintenance tasks
+
+- [ ] **AI Customer Service**
+  - [ ] Chatbot for common inquiries and support
+  - [ ] AI-powered ticket categorization and routing
+  - [ ] Automated response suggestions for customer communications
+  - [ ] Sentiment analysis for customer feedback
+
+- [ ] **AI Analytics & Insights**
+  - [ ] Predictive analytics for venue utilization
+  - [ ] AI-driven revenue optimization suggestions
+  - [ ] Automated report generation with insights
+  - [ ] Anomaly detection for unusual patterns
+
+- [ ] **AI-Powered Automation**
+  - [ ] Smart invoice generation and payment reminders
+  - [ ] Automated booking conflict detection and resolution
+  - [ ] AI-driven pricing optimization for services
+  - [ ] Intelligent resource allocation recommendations
+
+### Improvement Ideas
+- [ ] **Machine Learning Features**
+  - [ ] Pattern recognition for maintenance issues
+  - [ ] Learning from historical data to improve predictions
+  - [ ] Personalized dashboard recommendations
+  - [ ] AI-powered search and filtering
+
+- [ ] **Natural Language Processing**
+  - [ ] Voice-to-text for maintenance requests
+  - [ ] Smart search with natural language queries
+  - [ ] Automated email parsing and categorization
+  - [ ] AI-powered document analysis and extraction
+
+---
+
+Add more ideas below as you work on the project! 
