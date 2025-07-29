@@ -12,11 +12,6 @@ import {
   type RecentActivity,
   type SpaceStatus
 } from '../components/DashboardWidgets';
-import PDFGenerator from '../components/PDFGenerator';
-import ProductionRoadmapPDF from '../components/ProductionRoadmapPDF';
-import VisualProductionDoc from '../components/VisualProductionDoc';
-import ScreenshotGuide from '../components/ScreenshotGuide';
-import AcquisitionPitchDeck from '../components/AcquisitionPitchDeck';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -318,31 +313,6 @@ export default function DashboardPage() {
             <RecentActivitiesWidget activities={recentActivities} />
             <SpaceStatusWidget spaces={spaceStatus} />
           </div>
-
-          {/* PDF Documentation Generator */}
-          <PDFGenerator onGenerate={() => {
-            console.log('PDF generated successfully!');
-          }} />
-
-          {/* Production Roadmap PDF Generator */}
-          <ProductionRoadmapPDF onGenerate={() => {
-            console.log('Production roadmap PDF generated successfully!');
-          }} />
-
-          {/* Visual Production Documentation */}
-          <VisualProductionDoc onGenerate={() => {
-            console.log('Visual production documentation generated successfully!');
-          }} />
-
-          {/* Screenshot Guide */}
-          <ScreenshotGuide onGenerate={() => {
-            console.log('Screenshot guide generated successfully!');
-          }} />
-
-          {/* Acquisition Pitch Deck */}
-          <AcquisitionPitchDeck onGenerate={() => {
-            console.log('Acquisition pitch deck generated successfully!');
-          }} />
         </div>
       </div>
     </div>
